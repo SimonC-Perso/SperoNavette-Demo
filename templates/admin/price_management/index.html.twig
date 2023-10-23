@@ -1,0 +1,99 @@
+{% extends 'admin/index.html.twig' %}
+{% form_theme pricesForm 'bootstrap_5_layout.html.twig' %}
+    {% block stylesheets %}
+        {{ parent() }}
+        <link
+                href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css"
+                rel="stylesheet"
+        />
+        <link rel="stylesheet"
+              href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css"/>
+    {% endblock %}
+    {% block javascripts %}
+        <script src="{{ asset('Javascripts/priceManagement.js') }}"></script>
+        <script
+                src="https://code.jquery.com/jquery-3.6.0.min.js"
+                integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+                crossorigin="anonymous"
+        ></script>
+        <script
+                src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"
+                integrity="sha512-2ImtlRlf2VVmiGZsjm9bEyhjGW4dU7B6TNwh/hx/iSByxNENtj3WVE6o/9Lj4TJeVXPi4bnOIMXFIJJAeufa0A=="
+                crossorigin="anonymous"
+                referrerpolicy="no-referrer"
+        ></script>
+    {% endblock %}
+{% block body %}
+    <header class="masthead" id="adminHeader">
+        <div class="text-center">
+            {% include('admin/navAdmin.html') %}
+        </div>
+    </header>
+    <div class="tab-panel fade show active" id="priceManagement" role="tabpanel">
+        <section class="page-section mt-0 bg-dark" id="sectionPriceManagement">
+            <div class="row justify-content-center">
+                <h2 class="section-heading text-uppercase text-white">{{ "menu.priceManagement.name" | trans }}</h2>
+                <div class="col-md-5 text-bg-dark" style="margin-bottom: 6px">
+                    <div class="row">
+                        {{ form_start(pricesForm,{"attr":{'id':'pricesForm', 'action':'save','method':'POST'}}) }}
+                        <div class="row align-items-stretch mb-10">
+                            <div class="col-md-1" hidden="hidden">
+                                <div class="form-group text-white">
+                                    {{ form_row(pricesForm.from.zipcode) }}
+                                    <div id="bookingForm_travel_arrivalAddress_arrivalCity_zipcode_error" hidden="true"
+                                         class="alert alert-danger col-md-12 col-md-offset-3">{{ 'form.error.zipcode' | trans }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="form-group text-white">
+                                    {{ form_row(pricesForm.from.label, {'class':(pricesForm.from.label.vars.valid ? '' : 'is-invalid')}) }}
+                                    <div id="suggesstionBoxDepartLocalite"></div>
+                                    <div id="priceForm_departureCity_label_error" hidden="true"
+                                         class="alert alert-danger col-md-12 col-md-offset-3">{{ 'form.error.city' | trans }}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-1" hidden="hidden">
+                                <div class="form-group text-white">
+                                    {{ form_row(pricesForm.to.zipcode) }}
+                                    <div id="bookingForm_travel_arrivalAddress_arrivalCity_zipcode_error" hidden="true"
+                                         class="alert alert-danger col-md-12 col-md-offset-3">{{ 'form.error.zipcode' | trans }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="form-group text-white">
+                                    {{ form_row(pricesForm.to.label, {'class':(pricesForm.to.label.vars.valid ? '' : 'is-invalid')}) }}
+                                    <div id="suggesstionBoxDepartLocalite"></div>
+                                    <div id="priceForm_arrivalCity_label_error" hidden="true"
+                                         class="alert alert-danger col-md-12 col-md-offset-3">{{ 'form.error.city' | trans }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-7 ">
+                                <div class="col-md-4">
+                                    <div class="form-group text-white">
+                                        {{ form_row(pricesForm.price) }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-10">
+                            <div class="form-group text-white">
+                                <!-- Submit button !-->
+                                <button id="btnPricesForm" type="submit" class="btn btn-primary ">
+                                    {{ "form.btn.save" | trans }}
+                                </button>
+                                <input name="csrf_token" type="hidden" value="{{ csrf_token('prices_form') }}">
+                            </div>
+                        </div>
+                        {{ form_end(pricesForm) }}
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </div>
+{% endblock %}

@@ -1,0 +1,9 @@
+twig:
+  default_path: '%kernel.project_dir%/templates'
+  paths:
+    'public/Css/email': 'emailCss'
+    'public/Css/': 'Css'
+    '%kernel.project_dir%/public/IMG/email': img
+when@test:
+  twig:
+    strict_variables: true

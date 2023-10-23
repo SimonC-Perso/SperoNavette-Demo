@@ -1,0 +1,47 @@
+<ul class="nav nav-pills justify-content-center" role="tablist">
+    <li class="nav-item" role="presentation">
+        <a aria-selected="true" class="nav-link" href="{{ path('app_admin') }}#home"
+           role="tab">Réservations</a>
+    </li>
+    <li class="nav-item" role="presentation">
+        <a aria-selected="false" class="nav-link" href="{{ path('app_admin') }}#userAdd" role="tab"
+           tabindex="-1">Création d'utilisateur</a>
+    </li>
+    <li class="nav-item" role="presentation">
+        <a aria-selected="false" class="nav-link" href="{{ path('app_user_list') }}" tabindex="-1"
+        >Liste d'utilisateurs</a>
+    </li>
+    {% if role is defined and role == 'ROLE_ADMIN' %}
+    <li class="nav-item" role="presentation">
+        <a aria-selected="false" class="nav-link disabled" href="{{ path('app_admin') }}#formEdit"
+           role="tab" tabindex="-1">Formulaires</a>
+    </li>
+    <li class="nav-item" role="presentation">
+        <a aria-selected="false" class="nav-link" href="{{ path('app_admin') }}#entrepriseEdit"
+           role="tab"
+           tabindex="-1">Informations Entreprise</a>
+    </li>
+    <li class="dropdown" role="presentation">
+        <div class="dropdown">
+            <a aria-expanded="false" aria-haspopup="true"
+               class="btn nav-link dropdown-toggle"
+               data-toggle="dropdown" href="#" id="dropdownMenuLink">
+                {{ "menu.priceManagement.name" | trans }}
+            </a>
+
+            <div aria-labelledby="dropdownMenuLink" class="dropdown-menu">
+                <a class="dropdown-item" href="{{ path('priceManagement/new') }}">{{ "menu.priceManagement.prices.new" |
+                    trans
+                    }}</a>
+                <a class="dropdown-item" href="{{ path('priceManagement/update') }}">{{
+                    "menu.priceManagement.prices.update" |
+                    trans
+                    }}</a>
+            </div>
+        </div>
+    </li>
+    {% endif %}
+    <li class="nav-item" role="presentation">
+        <a aria-selected="false" class="nav-link disabled" href="#" role="tab" tabindex="-1">Calendrier</a>
+    </li>
+</ul>

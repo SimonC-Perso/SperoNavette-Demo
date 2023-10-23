@@ -1,0 +1,123 @@
+{% extends 'base.html.twig' %}
+{% form_theme userForm 'bootstrap_5_layout.html.twig' %}
+{% block body %}
+
+    {#    Requis pour le DatePicker #}
+    {% block stylesheets %}
+        <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <link rel="stylesheet" href="{{ asset('Css/flag-icons.min.css') }}">
+    {% endblock %}
+    {% block javascripts %}
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"
+                integrity="sha512-T/tUfKSV1bihCnd+MxKD0Hm1uBBroVYBOYSk1knyvQ9VyZJpc/ALb4P0r6ubwVPSGB2GvjeoMAJJImBG12TiaQ=="
+                crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+        <script src="{{ asset('Javascripts/UserForm.js') }}"></script>
+        {% if not editMode %}
+            <script src="{{ asset('Javascripts/phoneInput.js') }}"></script>
+        {% endif %}
+    {% endblock %}
+
+    <header class="masthead">
+    </header>
+    <!-- Formulaire d'inscription !-->
+    <section class="page-section" id="sectionUserForm">
+        <div class="container">
+            <div class="text-center">
+                <h2 class="section-heading text-uppercase">{% if editMode %} Mon Compte {% else %} Créer un Compte {% endif %}</h2>
+            </div>
+            <!-- Formulaire User !-->
+            {{ form_start(userForm,{'attr':{'id':'userForm'}}) }}
+            <div class="row align-items-stretch mb-5">
+                <div class="col-md-2">
+                    <div class="form-group text-white">
+                        <!-- LastName input !-->
+                        {{ form_row(userForm.last_name, {'class':(userForm.last_name.vars.valid ? '' : 'is-invalid')}) }}
+                        <div id="lastNameError" hidden="true" class="alert alert-danger col-md-12 col-md-offset-3">
+                            Veuillez indiquer votre nom.
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group text-white">
+                        <!-- FirstName input !-->
+                        {{ form_row(userForm.first_name, {'class':(userForm.first_name.vars.valid ? '' : 'is-invalid')}) }}
+                        <div id="firstNameError" hidden="true" class="alert alert-danger col-md-12 col-md-offset-3">
+                            Veuillez indiquer votre prénom.
+                        </div>
+                    </div>
+                </div>
+                {% if not editMode %}
+                    <div class="col-md-4 form-group  text-white">
+                        {{ form_label(userForm.phone) }}
+                        <div class="form-row">
+                            <div class="col-sm-auto d-inline-flex">
+                                <!-- Phone input !-->
+                                {{ form_widget(userForm.country_code,{'attr':{'class':'form-control col-pd-auto'}}) }}
+                                {{ form_widget(userForm.phone, {'class':(userForm.phone.vars.valid ? '' : 'is-invalid')}) }}
+                            </div>
+                            <div id="phoneError" hidden="true" class="alert alert-danger col-md-12 col-md-offset-3">
+                                Veuillez indiquer votre numéro de téléphone.
+                            </div>
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="col-md-2 form-group  text-white">
+                        {{ form_row(userForm.phone, {'class':(userForm.phone.vars.valid ? '' : 'is-invalid')}) }}
+                        <div id="phoneError" hidden="true" class="alert alert-danger col-md-12 col-md-offset-3">Veuillez
+                            Indiquer votre numéro de téléphone.
+                        </div>
+                    </div>
+                {% endif %}
+                <div class="col-md-3">
+                    <div class="form-group text-white">
+                        <!-- email input !-->
+                        {{ form_row(userForm.email,{ 'attr':{'readOnly':editMode, 'class':(userForm.email.vars.valid ? '' : 'is-invalid')}}) }}
+                        <div id="emailFormatError" hidden="true" class="alert alert-danger col-md-12 col-md-offset-3">
+                            L'adresse mail n'est pas valide.
+                        </div>
+                        <div id="emailUsedError" hidden="true" class="alert alert-danger col-md-12 col-md-offset-3">
+                            L'adresse mail est déjà utilisée.
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group text-white">
+                        <!-- confirmPassword input !-->
+                        {#                        {{ form_row(userForm.userStatus) }} #}
+                    </div>
+                </div>
+                {% if not editMode %}
+                    <div class="col-md-3">
+                        <div class="form-group text-white">
+                            <!-- password input !-->
+                            {{ form_row(userForm.password,{ 'attr':{'class':(userForm.password.vars.valid | length ? '' : 'is-invalid') }} ) }}
+                            <div id="passwordError" hidden="true" class="alert alert-danger col-md-12 col-md-offset-3">
+                                Le mot de passe doit contenir 1 majuscule, 1 minuscule, 1 nombre et 1 caractère spécial
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group text-white">
+                            <!-- confirmPassword input !-->
+                            {{ form_row(userForm.confirmPassword, { 'attr':{'class':(userForm.confirmPassword.vars.valid | length ? '' : 'is-invalid') }}) }}
+                            <div id="confirmPasswordError" hidden="true"
+                                 class="alert alert-danger col-md-12 col-md-offset-3">Les mots de passe doivent être
+                                identiques
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+                <div class="text-center">
+                    <div class="form-group text-white">
+                        <!-- Submit button !-->
+                        {{ form_widget(userForm._token) }}
+                        <button id="btnUserForm" type="submit" class="btn btn-primary btn-xl text-uppercase ">Envoyer
+                        </button>
+                    </div>
+                </div>
+                {{ form_end(userForm, {render_rest: false}) }}
+{% endblock %}

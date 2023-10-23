@@ -1,0 +1,76 @@
+{% extends 'admin/index.html.twig' %}
+{% block body %}
+    {% block stylesheets %}
+        {% form_theme userForm 'bootstrap_5_layout.html.twig' %}
+    {% endblock %}
+    <header class="masthead" id="adminHeader">
+        <div class="text-center">
+            {% include('admin/navAdmin.html') %}
+        </div>
+    </header>
+    <section class="page-section mt-0 bg-dark" id="sectionUserForm">
+        {{ form_start(userForm,{'attr':{'id':'AdminUserForm','class':'form-floating' }}) }}
+        <div class="row align-items-stretch m-5">
+
+            <div class="col-md-2">
+                <div class="form-group text-white">
+                    <!-- LastName input !-->
+                    {{ form_row(userForm.last_name, {'class':(userForm.last_name.vars.valid ? '' : 'is-invalid')}) }}
+                    <div id="lastNameError" hidden="true" class="alert alert-danger col-md-12 col-md-offset-3">
+                        Veuillez indiquer un nom.
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group text-white">
+                    <!-- FirstName input !-->
+                    {{ form_row(userForm.first_name, {'class':(userForm.first_name.vars.valid ? '' : 'is-invalid')}) }}
+                    <div id="firstNameError" hidden="true" class="alert alert-danger col-md-12 col-md-offset-3">
+                        Veuillez indiquer un prénom.
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group  text-white">
+                    {{ form_row(userForm.phone, {'class':(userForm.phone.vars.valid ? '' : 'is-invalid')}) }}
+                    <div id="phoneError" hidden="true" class="alert alert-danger col-md-12 col-md-offset-3">
+                        Veuillez indiquer un numéro de téléphone.
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group text-white">
+                    <!-- email input !-->
+                    {{ form_row(userForm.email,{ 'attr':{'readOnly':true}}) }}
+                </div>
+            </div>
+            {% if role is defined and role == 'ROLE_ADMIN' %}
+                <div class="col-md-2">
+                    <div class="form-group text-white">
+                        {{ form_row(userForm.role) }}
+                    </div>
+                </div>
+            {% endif %}
+            <div class="col-md-2">
+                <div class="form-group text-white">
+                    {{ form_row(userForm.userStatus) }}
+                </div>
+            </div>
+            <div class="text-center">
+                <div class="form-group text-white">
+                    <!-- Submit button !-->
+                    {{ form_widget(userForm._token) }}
+                    <button id="AdminBtnUserForm" type="submit" name="update"
+                            class="btn btn-primary btn-lg">
+                        Modifier
+                    </button>
+                    <button id="AdminBtnUserForm" type="submit" name="delete"
+                            class="btn btn-secondary btn-lg">
+                        Supprimer
+                    </button>
+                </div>
+            </div>
+            {{ form_end(userForm, {render_rest: false}) }}
+        </div>
+    </section>
+{% endblock %}

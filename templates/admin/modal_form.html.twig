@@ -1,0 +1,30 @@
+<div class="modal fade" id="modal-form{{ user.id }}" tabindex="-1" role="dialog" aria-labelledby="createModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="createModalLabel"> {{ header.userInformation | trans }}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-4-auto">Nom : {{ user.lastName }} </div>
+                        <div class="col-md-4-auto">Prénom : {{ user.firstName }} </div>
+                        <div class="col-md-4-auto">Email : {{ user.email }} </div>
+                        <div class="col-md-4-auto">Téléphone : {{ user.phone }} </div>
+                        <div class="col-md-4-auto">Role
+                            : {{ user.roleid.label[:1]|upper ~ user.roleid.label[1:] }} </div>
+                        <div class="col-md-4-auto">Statut : {{ user.statutUser }} </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary">Modifier</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+            </div>
+        </div>
+    </div>
+</div>

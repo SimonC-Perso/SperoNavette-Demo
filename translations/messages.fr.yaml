@@ -1,0 +1,120 @@
+form:
+  btn:
+    validate: "Valider"
+    save: "Sauvegarder"
+    cancel: "Annuler"
+  prices:
+    from: "Départ: "
+    to: "Arrivée: "
+    price: "Prix: "
+  enterprise:
+    name: "Nom"
+    email: "Email"
+    phone: "Téléphone"
+    vat: "T.V.A"
+  error:
+    street:
+      notBlank: "Veuillez indiquer le nom d'une rue"
+    city: "Veuillez indiquer le code postal, la ville ou un aéroport."
+    number: "Veuillez indiquer un numéro"
+    country: "Veuillez selectionner un pays."
+    zipcode: "Veuillez indiquer le code postal"
+  travel:
+    type: "Type de voyage"
+    transport: "Type de navette"
+  number:
+    passenger: "Nombre de passagers"
+  zipcode: "Code postal"
+  arrivalAddress:
+    arrivalNumber: "N°"
+    arrivalStreet: "Rue"
+  departureAddress:
+    departureNumber: "N°"
+    departureStreet: "Rue"
+  departureCity:
+    zipcode: "Code postal"
+    label: "Ville de départ"
+  arrivalCity:
+    zipcode: "Code postal"
+    label: "Ville d'arrivée"
+  departureCountry:
+    country: "Pays d'origine"
+  arrivalCountry:
+    country: "Pays d'arrivée"
+
+TypeBaggage: "Type de bagages"
+Baggage: "Bagages"
+AdditionalFee: "Prix des suppléments"
+Recap: "Récapitulatif"
+Close: "Fermer"
+Send a request: "Envoyer la demande"
+modal:
+  priceManagement:
+    price:
+      update: 'modification du prix'
+      new: 'nouveau prix'
+  booking:
+    details: "Détails"
+    client: "Client"
+    bookingDate: "Date de réservation"
+    passengers: "Passager(s)"
+    type: "Type de navette"
+    price: "Prix"
+    status: "Statut"
+    contact:
+      firstName: "Prénom: "
+      lastName: "Nom: "
+      mail: "Votre adresse mail: "
+      phone: "Votre numéro de téléphone: "
+  travel:
+    inShared: "en navette partagée"
+    inPrivate: "en navette privée"
+    from: "Transfert de"
+    to: "Vers"
+    type: "Type de voyage "
+  additional:
+    fee: "Le(s) supplément(s)"
+  passenger: "Nombre de personnes"
+  information:
+    price: "Le prix de votre transport s'élève à :"
+  price: "Estimation du prix"
+menu:
+  priceManagement:
+    name: "Gestion des prix"
+    prices:
+      new: "Nouveau tarif"
+      update: "modifier les tarifs"
+  booking: "Réservations"
+  userCreation: "Création d'utilisateur"
+  userList: "Liste des utilisateurs"
+  enterpriseInformation: "Informations entreprise"
+ask:
+  contact: "Demande de contact"
+header:
+  userInformation: "Information de l'utilisateur"
+user:
+  userStatus: "Statut"
+  role: "Rôle"
+  phone: "Téléphone"
+  email: "Email"
+  firstName: "Prénom"
+  lastName: "Nom"
+mail:
+  mrs_mr: "Madame, Monsieur,"
+  header: "Nous vous remercions de l’intérêt que vous portez à Spero Navette."
+  body:
+    first:
+      paragraph: "Vous trouverez ci-dessous le récapitulatif de votre demande."
+  footer:
+    paragraph: "Nous vous recontacterons dans les plus brefs délais afin de valider votre demande"
+    end: "Cordialement,"
+error:
+  error: "Une erreur est survenue"
+  contact: "Veuillez contacter le +32 490 197 914"
+  price: "Impossible de déterminer le prix via le simulateur!"
+find:
+  city: 'Rechercher par ville'
+priceManagement:
+  success:
+    update: 'La mise à jour est effectuée'
+    create: 'La création est réussie'

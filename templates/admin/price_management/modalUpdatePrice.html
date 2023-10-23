@@ -1,0 +1,27 @@
+<div class="modal fade modal-lg" id="modal-price-form" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalSimulator">{{ 'modal.priceManagement.price.update' | trans }}</h5>
+            </div>
+            <form action="updatePrice" method="post" onsubmit="return changeValue();">
+                <div class="modal-body align-content-center" id="editPriceManagementBody">
+
+                    <div class="form-group">
+                        <label for="priceUpdated">{{ 'modal.priceManagement.price.new' | trans }} : </label>
+                        <input id="priceUpdated" name="price" step=0.5 type=number>
+                        <input hidden="hidden" id="priceId" name="priceId">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" data-dismiss="modal" type="button">{{ 'form.btn.cancel' | trans }}
+                    </button>
+                    <button class="btn btn-primary" id='priceUpdateBtn' type="submit"><i class="ti-save"></i>{{
+                        'form.btn.save'| trans }}
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

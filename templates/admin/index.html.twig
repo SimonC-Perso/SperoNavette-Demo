@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+
+    {% block stylesheets %}
+        {#        <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> #}
+    {% endblock %}
+    {% block javascripts %}
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"
+                integrity="sha512-T/tUfKSV1bihCnd+MxKD0Hm1uBBroVYBOYSk1knyvQ9VyZJpc/ALb4P0r6ubwVPSGB2GvjeoMAJJImBG12TiaQ=="
+                crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        <script src="{{ asset('Javascripts/index.js') }}"></script>
+        <script src="{{ asset('Javascripts/url.js') }}"></script>
+    {% endblock %}
+{% block body %}
+    <header class="masthead" id="adminHeader">
+        <div class="text-center">
+            <ul class="nav nav-pills justify-content-center" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <a id="adminHome" class="nav-link active" data-bs-toggle="tab" href="#home" aria-selected="true"
+                       role="tab">Réservations</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a id="adminUserAdd" class="nav-link" data-bs-toggle="tab" href="#userAdd" aria-selected="false"
+                       tabindex="-1"
+                       role="tab">Création d'utilisateur</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a id="adminUserList" class="nav-link" href="{{ path('app_user_list') }}" aria-selected="false"
+                       tabindex="-1"
+                    >Liste d'utilisateurs</a>
+                </li>
+                {% if role is defined and role == 'ROLE_ADMIN' %}
+                    <li class="nav-item" role="presentation">
+                        <a id="formEdit" class="nav-link disabled" data-bs-toggle="tab" href="#formEdit"
+                           aria-selected="false"
+                           tabindex="-1" role="tab">Formulaires</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a id="adminEnterpriseEdit" class="nav-link" data-bs-toggle="tab" href="#entrepriseEdit"
+                           aria-selected="false"
+                           tabindex="-1"
+                           role="tab">Informations Entreprise</a>
+                    </li>
+                    <li class="dropdown" role="presentation">
+                        <div class="dropdown">
+                            <a class="btn nav-link dropdown-toggle" href="#"
+                               id="dropdownMenuLink"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                {{ "menu.priceManagement.name" | trans }}
+                            </a>
+
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                <a class="dropdown-item"
+                                   href="{{ path('priceManagement/new') }}">{{ "menu.priceManagement.prices.new" |
+                                    trans }}</a>
+                                <a class="dropdown-item"
+                                   href="{{ path('priceManagement/update') }}">{{ "menu.priceManagement.prices.update" |
+                                    trans }}</a>
+                            </div>
+                        </div>
+                    </li>
+                    {#                    <li class="nav-item" role="presentation"> #}
+                    {#                        <a id="adminPriceManagement" class="nav-link" href="{{ path('priceManagement') }}" #}
+                    {#                           aria-selected="false" #}
+                    {#                           tabindex="-1" #}
+                    {#                        >{{ "menu.priceManagement" | trans }}</a> #}
+                    {#                    </li> #}
+                {% endif %}
+                <li class="nav-item" role="presentation">
+                    <a id="adminCalendar" class="nav-link disabled" href="#" aria-selected="false" tabindex="-1"
+                       role="tab">Calendrier</a>
+                </li>
+            </ul>
+        </div>
+    </header>
+{% endblock %}
